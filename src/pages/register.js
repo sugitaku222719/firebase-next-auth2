@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 // 現時点で使わないものもあるが今後のことを考えて入れておく
 import { Col, Container, Form, FormGroup, Input, Label, Row, Button } from "reactstrap";
 import { useState } from 'react';
+import Link from 'next/link';
 
 // Firebaseの初期化を行うためfirebaseAppをインポート
 // import firebaseApp from '../lib/FirebaseConfig';
@@ -24,7 +25,7 @@ export default function Register() {
       // ユーザー登録ができたかどうかをわかりやすくするためのアラート
       alert( '登録完了！' );
       console.log( user );
-      
+
     })
     .catch((error) => {
       console.log(error);
@@ -72,6 +73,10 @@ export default function Register() {
             </Button>
         </Form>
       </div>
+      <Link
+        href="/login">
+        登録済みの方
+      </Link>
     </div>
   )
 }

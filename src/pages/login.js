@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Col, Container, Form, FormGroup, Input, Label, Row, Button } from "reactstrap";
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Header from '../components/Header'
 import Link from 'next/link';
@@ -9,6 +10,7 @@ import Link from 'next/link';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter(); 
 
   const doLogin = () => {
     const auth = getAuth();
@@ -18,6 +20,7 @@ export default function Login() {
         const user = userCredential.user;
         alert( 'ログインOK！' );
         console.log( user );
+        router.push('/');
       })
       .catch((error) => {
         console.log(error);
@@ -65,9 +68,15 @@ export default function Login() {
             </Button>
         </Form>
       </div>
-      <Link
+      <div>
+        <Link
         href="/forgot_password">
         パスワードを忘れた場合
+        </Link>
+      </div>
+      <Link
+        href="/register">
+        新規登録
       </Link>
     </div>
   )
